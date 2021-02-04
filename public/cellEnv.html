@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biología en VR</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="js/aFrame.js"></script>
+    <script src="js/components/sky-changer.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <audio id="bg-music" crossorigin="anonymous" src="sound/ambience.mp3"></audio>
+            <audio id="clicker" crossorigin="anonymous" src="sound/clicker.mp3"></audio>
+            <img id="venus-sky" src="img/vrEnv/venusSky.jpg" alt="Sky 360">
+            <img id="ace2-gif" src="img/vrEnv/ace2.gif" alt="Ace2 GIF">
+            <img id="covid19-gif" src="img/vrEnv/covid19.gif" alt="COVID-19 GIF">
+            <img id="influenza-gif" src="img/vrEnv/influenza.gif" alt="Influenza GIF">
+            <img id="dirty-texture" src="img/vrEnv/dirtyTexture.jpg" alt="Dirty Texture">
+            <img id="jupiter-texture" src="img/vrEnv/JupiterTexture.jpg" alt="Jupiter Texture">
+            <img id="saturn-texture" src="img/vrEnv/SaturnTexture.jpg" alt="Saturn Texture">
+            <img id="exit-icon" src="img/vrEnv/exit.png" alt="exit icon">
+            <a-asset-item id="covid" src="img/vrEnv/sars-covid19/scene.gltf"></a-asset-item>
+            <a-asset-item id="ace2" src="img/vrEnv/ace2-receptor/scene.gltf"></a-asset-item>
+            <a-asset-item id="influenza" src="img/vrEnv/influenza-virus/scene.gltf"></a-asset-item>
+        </a-assets>
+
+        <!-- Cursor -->
+        <a-camera>
+            <a-cursor raycaster="objects: .clickable"></a-cursor>
+        </a-camera>
+
+        <!-- Backdrop -->
+        <a-plane rotation="0 -90 0" color="#355e3b" scale="8 2.5 0" position="2.1 1.60 -1.2"></a-plane>
+
+        <!-- Controlador Musica -->
+        <a-box sound="src: #bg-music; volume: 0.2; loop: true; autoplay: false" class="clickable" visible="false" id="controller" scale="0.2 0.75 0.2" position="2 1.55 -1.5"></a-box>
+        <a-box color="red" id="controller-case" scale="0.2 0.75 0.2" position="2 1.55 -1.5" animation__position="property: rotation; to: 0 360 0; easing: linear; dur: 5000; loop: true"></a-box>
+        <a-text value="Mira aqui para poner musica! -->" position="2 1.41 -4.85" rotation="0 -90 0"></a-text>
+        <a-text id="radio-txt" value="Off" position="2 2.25 -1.68" rotation="0 -90 0"></a-text>
+
+
+        <!-- Controlador Cielo -->
+        <a-plane id="his" sound="src: #clicker; volume: 0.75; loop: false; autoplay: false" sky-changer="img: #jupiter-texture" class="clickable" color="black" position="2 1.25 0" width="2.5" height="0.25" rotation="0 -90 0">
+            <a-text id="jupiter-change" color="white" align="center" value="Entorno Brillante"></a-text>
+        </a-plane>
+        <a-plane sky-changer="img: #saturn-texture" class="clickable" color="black" position="2 1.55 0" width="2.5" height="0.25" rotation="0 -90 0">
+            <a-text id="saturn-change" color="white" align="center" value="Entorno con Patrones"></a-text>
+        </a-plane>
+        <a-plane sky-changer="img: #dirty-texture" class="clickable" color="black" position="2 1.85 0" width="2.5" height="0.25" rotation="0 -90 0">
+            <a-text id="dirty-change" color="white" align="center" value="Entorno de Cueva"></a-text>
+        </a-plane>
+        <a-plane color="#76ff7a" position="2 2.25 0" width="2.5" height="0.25" rotation="0 -90 0" text="value: Mira a algun entorno para cambiarlo!; align: center; color: black;"></a-plane>
+        <a-sky id="sky" src="#jupiter-texture"></a-sky>
+
+        <!-- Cronometro De Simulacion -->
+        <a-plane color="white" position="1.995 2.4 -3.40" width="2" height="0.23" rotation="0 -90 0" text="value: Tiempo desde comienzo:; align: center; color: black;"></a-plane>
+        <a-plane color="black" position="2 2.15 -3.40" width="2.5" height="1" rotation="0 -90 0"></a-plane>
+        <a-text id="timer" color="white" value="00:00:00" position="1.995 2.02 -3.40" align="center" rotation="0 -90 0" width="9" height="9"></a-text>
+
+        <!-- Controlador de Modelos-->
+        <a-plane id="covid-label" class="clickable" color="black" position="-4.6 1 -4" width="2.5" height="0.25">
+            <a-text color="white" align="center" value="Modelo CoronaVirus"></a-text>
+        </a-plane>
+        <a-plane id="ace2-label" class="clickable" color="black" position="-4.6 1.30 -4" width="2.5" height="0.25">
+            <a-text color="white" align="center" value="Modelo Receptor Ace2"></a-text>
+        </a-plane>
+        <a-plane id="influenza-label" class="clickable" color="black" position="-4.6 1.60 -4" width="2.5" height="0.25">
+            <a-text color="white" align="center" value="Modelo Virus Influenza"></a-text>
+        </a-plane>
+
+        <!-- Modelos -->
+        <a-entity visible="false" id="covid-3d" gltf-model="#covid" scale="0.005 0.005 0.005" position="-1 1.6 -4" animation="property: rotation; to: 0 360 360; easing: linear; dur: 50000; loop: true"></a-entity>
+        <a-entity visible="false" id="ace2-3d" gltf-model="#ace2" scale="0.000004 0.000004 0.000004" position="-1 1 -3.95" animation="property: rotation; to: 0 360 0; easing: linear; dur: 30000; loop: true"></a-entity>
+        <a-entity visible="false" id="influenza-3d" gltf-model="#influenza" scale="0.013 0.013 0.013" position="-1 3.5 -4" animation="property: rotation; to: 0 360 0; easing: linear; dur: 30000; loop: true"></a-entity>
+        <a-box width="3.5" height="2.5" color="pink" rotation="-90 0 0" position="-1 0.25 -3.95"></a-box>
+        <a-plane width="3.5" height="3.5" position="-1 2.4 -5.2" color="purple"></a-plane>
+
+        <!-- Cuadros GIF-->
+        <a-entity id="covid-gif-frame" visible="false">
+            <a-entity geometry="primitive: plane; width: 2.95; height: 1.45" position="-1 3.1 -5.190" material="shader: gif; src: #covid19-gif"></a-entity>
+        </a-entity>
+        <a-entity id="ace2-gif-frame" visible="false">
+            <a-entity geometry="primitive: plane; width: 2.95; height: 1.45" position="-1 3.1 -5.190" material="shader: gif; src: #ace2-gif"></a-entity>
+        </a-entity>
+        <a-entity id="influenza-gif-frame" visible="false">
+            <a-entity geometry="primitive: plane; width: 2.95; height: 1.45" position="-1 3.1 -5.190" material="shader: gif; src: #influenza-gif"></a-entity>
+        </a-entity>
+        <a-plane width="3" height="1.5" position="-1 3.1 -5.195" color="white"></a-plane>
+
+        <!-- Clicker Center Point -->
+        <a-box visible="false" id="au-models" class="clickable" sound="src: #clicker; volume: 0.75; loop: false; autoplay: false" scale="9.2 3 15s" position="-4.6 1 -4"></a-box>
+        <a-box visible="false" id="au-sky" class="clickable" sound="src: #clicker; volume: 0.75; loop: false; autoplay: false" scale="9.2 3 15" position="2 1 0"></a-box>
+
+        <!-- Exit -->
+        <a-plane color="yellow" position="2.05 1.55 2" rotation="0 -90 0"></a-plane>
+        <a-plane id="exit" class="clickable" scale="0.9 0.9 0.9" color="orange" position="2.03 1.55 2" rotation="0 -90 0"></a-plane>
+        <a-plane color="orange" position="2 2.25 2" width="1" height="0.25" rotation="0 -90 0" text="value: Salida; align: center; width: 4; color: black;"></a-plane>
+        <a-image src="#exit-icon" scale="0.7 0.7 0.7" position="2.01 1.55 2" rotation="0 -90 0"></a-image>
+    </a-scene>
+</body>
+
+</html>

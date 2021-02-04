@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Biología de los Virus</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAACwJ6lSxwSQPROVWsoHPu0W9rtEgu5BQ",
+            authDomain: "sanidad-vr.firebaseapp.com",
+            databaseURL: "https://sanidad-vr.firebaseio.com",
+            projectId: "sanidad-vr",
+            storageBucket: "sanidad-vr.appspot.com",
+            messagingSenderId: "521452265133",
+            appId: "1:521452265133:web:aabd4d257e8c1f16b37024"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="js/loginCheck.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50" class="bg-persian-green">
+    <nav class="navbar navbar-expand-md bg-success navbar-dark fixed-top">
+        <a class="navbar-brand" href="index.html">
+            <img src="img/home.png" alt="logo" style="width:40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="vrMaterial.html">Realidad Virtual</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="biology.html">Biología de los Virus</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Galería
+                    </a>
+                    <div class="dropdown-menu bg-tea-green">
+                        <a class="dropdown-item" href="vrGallery.html">Kit Realidad Virtual</a>
+                        <a class="dropdown-item" href="bioGallery.html">Células en Realidad Virtual</a>
+                    </div>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                ||
+            </span>
+            <ul class="navbar-nav">
+                <li class="navbar-item">
+                    <a class="nav-link" href="#virus">Los Virus</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="#types">Tipos de Virus</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link" href="#diagnostic">Diagnósticos virológicos</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="submissionSeacher.html" id="admin-submit-searcher">Buscador De Inscripciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="userlogin.html" id="login-btn">Iniciar sesión</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="userregister.html" id="register-btn">Registrarse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="userweb.html" id="my-profile-btn">Mi Perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" id="logout-btn">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container p-4 jumbotron bg-dark text-center text-white" style="margin-top: 105px;">
+        <h1>Biología de los Virus</h1>
+        <p>Esta aventura en realidad virtual estudiaremos la composicion de los virus.</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <img src="img/grid/bio/animal-cell.jpg" alt="Celula Animal en 3D" width="650" class="img-fluid h-100 img-thumbnail mx-auto d-block">
+            <p id="virus"></p>
+        </div>
+        <br />
+        <div class="row" id="whatisit"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 mx-auto d-block">
+            <div class="jumbotron p-3 bg-dartmouth-green text-center text-white">
+                <h1>Los Virus - ¿Qué son?</h1>
+                <p class="text-warning" style="font-size: 18px;">
+                    Los virus son los únicos microorganismos no formados por células; contienen un ácido nucleico encerrado en una cubierta proteica. Para su replicación, necesitan infectar a una célula y utilizar su maquinaria enzimática, pues carecen de mecanismos propios
+                    para la obtención de energía y la síntesis proteica.
+                </p>
+                <h3 class="text-warning text-left" style="margin-left: 15px;">Estructura de un virus:</h3>
+                <table class="table table-striped bg-light">
+                    <thead>
+                        <tr>
+                            <th>Estructura</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-weight-bold">Nucleocápside</td>
+                            <td>Esta formada por envoltura lipídica (algunos). Los virus que no presentan envoltura se denominan virus desnudos. </td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Cápside</td>
+                            <td>Son la cubierta proteica que rodea el ácido nucleico. Está formada por subunidades proteicas llamadas capsómeros.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold" id="types">Ácido nucleico</td>
+                            <td>Ácido ribonucleico (ARN) o desoxirribonucleico (ADN), de cadena simple o doble, según el tipo de virus. </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <h1>Tipos de Virus</h1>
+                <p class="text-warning" style="font-size: 18px;">En virología clínica, los virus suelen clasificarse según el ácido nucleico que poseen y, dentro de esta clasificación, se establecen familias. </p>
+                <h3 class="text-warning text-left" style="margin-left: 15px;">Tipos de virus:</h3>
+                <table class="table table-striped table-border bg-dark" style="color:white">
+                    <thead>
+                        <tr>
+                            <th>Tipo de virus</th>
+                            <th>Explicación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-weight-bold">Virus respiratorios </td>
+                            <td>Son los que causan infección en humanos con mayor frecuencia. Virus de la gripe, virus respiratorio sincitial, virus de la parainfluenza, adenovirus, rinovirus y coronavirus.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Herpesviridae</td>
+                            <td>Causan faringitis, amigdalitis, herpes labiales o genitales, varicela o mononucleosis infecciosa, entre otras enfermedades. <br/><br/>Persisten en estado latente toda la vida después de la primoinfección, siendo frecuente su
+                                reactivación.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold" id="diagnostic">Virus de la Hepatitis</td>
+                            <td>Los virus de la hepatitis A y E se transmiten por vía oral y tienen buen pronóstico sin evolucionar a cronicidad. <br/><br/>Los de la hepatitis B, C y D se transmiten por vía parenteral y pueden causar enfermedad crónica que
+                                puede llevar a una cirrosis e incluso acompañarse de un hepatocarcinoma. </td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">VIH</td>
+                            <td>Causante del sida. <br/><br/>VIH-1 y VIH-2 son virus ARN denominados retrovirus, caracterizados por la presencia de una enzima denominada transcriptasa inversa o retrotranscriptasa que sintetiza un ADN complementario a su ARN
+                                (el cADN).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Virus del papiloma humano</td>
+                            <td>Los VPH producen verrugas en humanos y se dividen en más de 200 genotipos en función de la secuencia de su ADN. Algunos genotipos, denominados VPH de alto riesgo, pueden causar cáncer de cuello uterino (destacan VPH-16 y VPH-18).
+                                <br/><br/>La mayoría de las infecciones por este tipo de virus de alto riesgo son asintomáticas, desaparecen en 1 o 2 años y no causan cáncer. </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <h1>Diagnósticos virológicos</h1>
+                <p class="text-warning" style="font-size: 18px;">
+                    El diagnóstico virológico es un procedimiento complejo, debido a el pequeño tamaño de los virus impide efectuar exámenes directos con microscopía convencional. El aislamiento de virus no puede realizarse en medios de cultivo como los de bacterias, sino
+                    que requiere el uso de líneas celulares para cultivarlos.
+                </p>
+                <h3 class="text-warning text-left" style="margin-left: 15px;">Exámenes en directo:</h3>
+                <table class="table table-striped bg-light">
+                    <thead>
+                        <tr>
+                            <th>Tipo de diagnóstico</th>
+                            <th>Enlace al diagnóstico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-weight-bold">Microscopía Óptica</td>
+                            <td><a href="https://youtu.be/dvaTTbgLj3E">Microscopía Óptica: Test de Tzanck</a></td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Microscopía Electrónica</td>
+                            <td>De uso poco común.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Microscopía de Fluorescencia</td>
+                            <td>En ella se emplean anticuerpos marcados con fluorescencia que son específicos de antígenos virales.
+                                <a href="https://youtu.be/ydqxo6bm5d8">Míralo aquí mas detallado.</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Cultivo Celular</td>
+                            <td>Son células vivas mantenidas in vitro, cultivadas en frascos o tubos con medios nutritivos líquidos que permiten su viabilidad y multiplicación. <br/><br/>En el microscopio óptico no se observan los virus, sino el efecto que
+                                producen en las células hospedadoras o efecto citopático: modificación de la morfología habitual de las células inoculadas que variarán en función del tipo de virus.
+                                <a href="https://youtu.be/tTFH1ZSMsTg">Entra en detalle aquí.</a></td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Inmunología</td>
+                            <td> Métodos inmunológicos indirectos de detección de la respuesta inmunitaria humoral específica del paciente frente a un virus</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Serología</td>
+                            <td>Reacción de fijación del complemento, Inhibición de la hemaglutinación, Reacción de neutralización.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Biología molecular</td>
+                            <td>Son técnicas moleculares para el diagnóstico virológico; consisten en la detección o análisis de ADN o ARN viral. Un buen ejemplo de esto son los <a href="https://youtu.be/kD5NHne9WfU">conocidos PCRs</a>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <footer>
+        <!-- Uso de FlexBox en CSS-->
+        <div class="main-content">
+            <div class="box">
+                <a href="#"><span class="far fa-arrow-alt-circle-up"></span></a>
+                <h2>¿Quiéres saber más sobre nosotros?</h2>
+                <p class="footer-content">¡Estas invitado a conocer todos nuestros eventos y nuevas oportunidades que te encontrarás! <br /> Síguenos en nuestras redes sociales para enterarte de nuevos eventos al instante.</p>
+                <div class="social">
+                    <a href="#"><span class="fab fa-facebook-f"></span></a>
+                    <a href="#"><span class="fab fa-twitter"></span></a>
+                    <a href="#"><span class="fab fa-instagram"></span></a>
+                    <a href="#"><span class="fab fa-youtube"></span></a>
+                </div>
+                <p>--------------------------------</p>
+                <p>~~Aprende A Descrubrir~~</p>
+            </div>
+        </div>
+        <div class="extras">
+            <p class="ft-rights">© 2020 IES El Rincón. Creative Commons.</p>
+            <p class="terms">Términos y Privacidad.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

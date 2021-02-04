@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAACwJ6lSxwSQPROVWsoHPu0W9rtEgu5BQ",
+            authDomain: "sanidad-vr.firebaseapp.com",
+            databaseURL: "https://sanidad-vr.firebaseio.com",
+            projectId: "sanidad-vr",
+            storageBucket: "sanidad-vr.appspot.com",
+            messagingSenderId: "521452265133",
+            appId: "1:521452265133:web:aabd4d257e8c1f16b37024"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/usersite.js"></script>
+
+</head>
+
+<body class="bg-midnight-green">
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark fixed-top">
+        <a class="navbar-brand" href="index.html">
+            <img src="img/home.png" alt="logo" style="width:40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+						<span class="navbar-toggler-icon"></span>
+				</button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="vrMaterial.html">Realidad Virtual</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="biology.html">Biología de los Virus</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Galería</a>
+                    <div class="dropdown-menu bg-tea-green">
+                        <a class="dropdown-item" href="vrGallery.html">Kit Realidad Virtual</a>
+                        <a class="dropdown-item" href="bioGallery.html">Células en Realidad Virtual</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="submissionSeacher.html" id="admin-submit-searcher">Buscador De Inscripciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" id="logout-btn">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div class="jumbotron p-3 bg-pine-green" style="margin-top: 205px; margin-bottom: 100px;">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
+                                <ul class="list-group text-center" role="tablist">
+                                    <li class="list-group-item list-group-item-action" style="font-weight: bold;">Menú</li>
+                                    <li id="user-tab-info" class="list-group-item list-group-item-action user-tab-standby">Perfil</li>
+                                    <li id="user-tab-submissions" class="list-group-item list-group-item-action user-tab-standby">Inscripciones</li>
+                                    <li id="user-tab-settings" class="list-group-item list-group-item-action user-tab-standby">Ajustes</li>
+                                </ul>
+                                <br />
+                                <div class="text-center">
+                                    <img id="pfp-image" src="img/user_default.png" alt="Imagen de Usuario" class="pfp-image img-fluid img-thumbnail">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div id="user-info">
+                                    <h2>Mi Perfil</h2>
+                                    <ul class="list-group">
+                                        <li class="list-group-item list-group-item-main">Nombre</li>
+                                        <li class="list-group-item list-group-item-content" id="pfp-name">Nombre</li>
+                                        <li class="list-group-item list-group-item-main">Apellidos</li>
+                                        <li class="list-group-item list-group-item-content" id="pfp-surname">Apellido</li>
+                                        <li class="list-group-item list-group-item-main">Correo</li>
+                                        <li class="list-group-item list-group-item-content" id="pfp-email">usuario@gmail.com</li>
+                                        <li class="list-group-item list-group-item-main">Contraseña</li>
+                                        <li class="list-group-item list-group-item-content">
+                                            <span id="pfp-password">contraseñaSecreta:D</span>
+                                            <button class="btn btn-sm btn-outline-dark" id="view-password" style="float: right;">Ver</button>
+                                        </li>
+                                        <li class="list-group-item list-group-item-main">Opciones de Imagen de Perfil</li>
+                                        <li class="list-group-item list-group-item-content">
+                                            <input type="file" id="pfp-image-change" style="display:none" />
+                                            <button type="button" id="pfp-image-change-btn" class="btn btn-primary">Cambiar Foto</button>
+                                            <div id="ext-file-err" class="text-warning">*ERROR: El tipo de archivo no es una imagen</div>
+                                            <button data-toggle="collapse" data-target="#image-delete-cage" id="pfp-image-delete-btn" class="btn btn-warning">Borrar Foto</button>
+                                            <div class="collapse" id="image-delete-cage">
+                                                <br />
+                                                <div class="jumbotron p-2 bg-warning">
+                                                    <h3>¿Seguro que quieres borrar tu foto de perfil?</h3>
+                                                    <button type="button" id="image-delete-confirm" class="btn btn-danger">Si</button>
+                                                    <button id="image-delete-cancel" data-toggle="collapse" data-target="#image-delete-cage" class="btn btn-primary">No</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="filter-table">
+                                    <h2>Mis inscripciones</h2>
+                                    <table class="table table-hover table-responsive-lg table-bordered bg-dartmouth-green" style="color:white">
+                                        <thead>
+                                            <tr>
+                                                <th>Campos de Inscripción</th>
+                                                <th>Información proporcionada</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Nombre:</td>
+                                                <td id="filter-name"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Apellidos:</td>
+                                                <td id="filter-surname"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sexo:</td>
+                                                <td id="filter-sex"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>DNI:</td>
+                                                <td id="filter-dni"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Correo Electrónico:</td>
+                                                <td id="filter-email"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Horas Escogidas:</td>
+                                                <td id="filter-hours"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Términos Aceptados:</td>
+                                                <td id="filter-terms"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Estado de inscripción:</td>
+                                                <td id="filter-approval"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="user-settings">
+                                    <h2>Ajustes</h2>
+                                    <ul class="list-group">
+                                        <li class="list-group-item list-group-item-main">Cambio de contraseña</li>
+                                        <li class="list-group-item list-group-item-content">
+                                            <button data-toggle="collapse" data-target="#password-change" class="btn btn-warning">Menu de cambio de contraseña</button>
+                                            <div id="password-change" class="collapse">
+                                                <br />
+                                                <div class="jumbotron p-3 bg-warning">
+                                                    <form id="form-change-pass">
+                                                        <div class="form-group">
+                                                            <label for="pass-confirm">Escribe tu contraseña actual:</label>
+                                                            <input type="password" class="form-control" id="pass-confirm" placeholder="Escribe tu contraseña actual" name="passwordConfirm">
+                                                            <div id="change-pass-empty-err" class="text-warning bg-danger">*Escribe aqui tu contraseña actual.</div>
+                                                            <div id="change-pass-confirm-err" class="text-warning bg-danger">*Esta contraseña no es la correcta.</div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pass-change-new">Confirma tu contraseña para borrar tu registro:</label>
+                                                            <input type="password" class="form-control" id="pass-change-new" placeholder="Escribe tu contraseña nueva" name="password">
+                                                            <div class="form-group form-check">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" id="show-pass-change" type="checkbox"> Mostrar contraseña
+                                                                </label>
+                                                            </div>
+                                                            <div id="invalid-pass-err" class="text-warning bg-danger">*Contraseña no coincide con los requisitos.</div>
+                                                            <div>
+                                                                <p class="pswd-req">Requisitos de contraseña:</p>
+                                                                <p class="pswd-reqmnts"> - Al menos una mayúscula</p>
+                                                                <p class="pswd-reqmnts"> - Al menos una minúscula</p>
+                                                                <p class="pswd-reqmnts"> - Al menos un numero</p>
+                                                                <p class="pswd-reqmnts"> - Debe tener como minimo 6 caracteres</p>
+                                                            </div>
+                                                        </div>
+                                                        <div id="same-pass-err" class="text-warning bg-danger">*No puedes usar la misma contraseña.</div>
+                                                        <button id="change-pass-btn" type="submit" class="btn btn-danger">Cambiar mi contraseña</button>
+                                                        <br />
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-main">Cierra tu cuenta</li>
+                                        <li class="list-group-item list-group-item-content">
+                                            <button data-toggle="collapse" data-target="#account-delete" class="btn btn-danger">Menu para cerrar la cuenta</button>
+                                            <div id="account-delete" class="collapse">
+                                                <br />
+                                                <div class="jumbotron p-3 bg-danger">
+                                                    <form id="delete-registry-form">
+                                                        <div class="form-group">
+                                                            <label for="email-registry-delete" style="color: white">Confirma tu email para borrar tu registro:</label>
+                                                            <input type="text" class="form-control" id="email-registry-delete" placeholder="Escribe tu email" name="email">
+                                                            <div id="email-registry-delete-err" class="text-danger bg-warning">*Escribe tu email correctamente.</div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="password-registry-delete" style="color: white">Confirma tu contraseña para borrar tu registro:</label>
+                                                            <input type="password" class="form-control" id="password-registry-delete" placeholder="Escribe tu contraseña" name="password">
+                                                            <div id="password-registry-delete-err" class="text-danger bg-warning">*Escribe aqui tu contraseña.</div>
+                                                        </div>
+                                                        <button id="registry-delete-confirm" type="submit" class="btn btn-warning">Confirmar Y Borrar mi registro</button>
+                                                        <br />
+                                                        <div id="mismatch-err" class="text-danger bg-warning">*ERROR: Los datos no coinciden. Consulte sus datos con el filtro proporcionado.</div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <footer>
+        <!-- Uso de FlexBox en CSS-->
+        <div class="main-content">
+            <div class="box">
+                <a href="#"><span class="far fa-arrow-alt-circle-up"></span></a>
+                <h2>¿Quiéres saber más sobre nosotros?</h2>
+                <p class="footer-content">¡Estas invitado a conocer todos nuestros eventos y nuevas oportunidades que te encontrarás! <br /> Síguenos en nuestras redes sociales para enterarte de nuevos eventos al instante.</p>
+                <div class="social">
+                    <a href="#"><span class="fab fa-facebook-f"></span></a>
+                    <a href="#"><span class="fab fa-twitter"></span></a>
+                    <a href="#"><span class="fab fa-instagram"></span></a>
+                    <a href="#"><span class="fab fa-youtube"></span></a>
+                </div>
+                <p>--------------------------------</p>
+                <p>~~Aprende A Descrubrir~~</p>
+            </div>
+        </div>
+        <div class="extras">
+            <p class="ft-rights">© 2020 IES El Rincón. Creative Commons.</p>
+            <p class="terms">Términos y Privacidad.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

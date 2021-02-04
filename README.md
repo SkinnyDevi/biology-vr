@@ -13,3 +13,17 @@
 
 ## Entra aqui y míralo tu mismo
 https://sanidad-vr.web.app
+
+
+## Lenguajes y librerias usadas
+- Firebase:
+  - Realtime Database
+  - Authentication
+  - Hosting
+  - Storage
+
+- HTML 5
+- JavaScript
+- CSS
+- XML
+- Bootstrap 4

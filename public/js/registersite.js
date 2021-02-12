@@ -29,6 +29,9 @@ function registrationProtocol(event) {
     var errImgFile = document.getElementById("image-file-err");
     var errExt = document.getElementById("ext-file-err");
 
+    var spinnerRegister = document.getElementById("spinner-register");
+    spinnerRegister.style.display = "inline-block";
+
     var formErr = false;
     var regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     var regexTest = regex.test(String(email));
@@ -68,12 +71,7 @@ function registrationProtocol(event) {
         }
     }
 
-    if (!imageFile) {
-        formErr = true;
-        errImgFile.style.display = 'block';
-    } else {
-        errImgFile.style.display = 'none';
-
+    if (imageFile) {
         var imageFileExt = imgFileName.slice(-4);
         var imageExts = ['png', 'jpg', 'jpeg', 'webp'];;
         if (imageFileExt.includes('.')) {
@@ -91,6 +89,8 @@ function registrationProtocol(event) {
     if (!formErr) {
         console.log("registry correct to send")
         userRegisterFB(email, password, registerForm);
+    } else {
+        spinnerRegister.style.display = "none";
     }
 }
 
@@ -135,6 +135,8 @@ function userRegisterFB(userEmail, userPassword, registerInfo) {
 
     var existingAcc = "auth/email-already-in-use";
 
+    var spinnerRegister = document.getElementById("spinner-register");
+
     firebaseAU.createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
             var user = userCredential.user;
@@ -143,6 +145,7 @@ function userRegisterFB(userEmail, userPassword, registerInfo) {
 
         })
         .catch((error) => {
+            spinnerRegister.style.display = "none";
             console.log(error.message)
             if (error.code = existingAcc) {
                 document.getElementById("existing-acc-err").style.display = 'block';
@@ -178,7 +181,7 @@ function userImageUpload(registerForm, userUID) {
     userPFPRef.put(registerForm.imageFile.files[0]).then(() => {
         console.log("Image uploaded.");
         setTimeout(function() {
-            window.location.href = "userweb.html";
+            window.location.href = "profile";
         }, 800);
     })
 }

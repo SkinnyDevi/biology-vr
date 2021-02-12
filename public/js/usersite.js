@@ -201,10 +201,19 @@ function userSeacher() {
         });
 
         // Profile picture download
+
         var storageRef = firebase.storage().ref();
-        storageRef.child('userProfilePicture/' + user.uid).getDownloadURL()
-            .then((url) => {
-                pfpImage.setAttribute('src', url);
+        storageRef.child('userProfilePicture/' + user.uid).getMetadata()
+            .then((metadata) => {
+                var fileType = metadata.contentType;
+
+                if (fileType.includes('image/')) {
+                    storageRef.child('userProfilePicture/' + user.uid)
+                        .getDownloadURL().then((url) => {
+                            console.log(url)
+                            pfpImage.setAttribute('src', url);
+                        })
+                }
             })
     });
 }
@@ -320,7 +329,7 @@ function updatePassword(event) {
                             console.log("There was an error when changing the password.");
                             var recentLogErr = "auth/requires-recent-login";
                             if (error.code == recentLogErr) {
-                                window.location.href = "userloginverify.html";
+                                window.location.href = "login-verify";
                             }
                         })
                     }
@@ -383,6 +392,13 @@ function accDeletion(event) {
                 })
 
                 if (userPass == password && userEmail == email) {
+                    var userPFPRef = firebase.storage().ref('userProfilePicture/' + user.uid);
+
+                    userPFPRef.delete().then(() => {
+                        console.log("Image deleted");
+                    }).catch((error) => {
+                        console.log(error.message);
+                    })
                     user.delete().then(function() {
                         // searches and deletes user submissions if any
                         refSubmissions.orderByChild('uid').equalTo(user.uid)
@@ -408,22 +424,22 @@ function accDeletion(event) {
                                 }
                             })
                             // deletes user from database
+
                         refDB.child("users/" + userUpdateKey).update({
                             email: null,
                             password: null,
                             name: null,
                             surname: null,
                             uid: null
-                        });
-                        console.log("The user was deleted successfully");
-                        setTimeout(function() {
-                            window.location.href = "index.html";
-                        }, 200);
+                        }).then(() => {
+                            console.log("The user was deleted successfully");
+                            window.location.href = "/";
+                        })
                     }).catch(function(error) {
-                        console.log("There was an error when changing the password.");
+                        console.log("There was an error when trying to delete the account.");
                         var recentLogErr = "auth/requires-recent-login";
                         if (error.code == recentLogErr) {
-                            window.location.href = "userloginverify.html";
+                            window.location.href = "login-verify";
                         }
                     })
                 }

@@ -1,0 +1,231 @@
+footer {
+    margin-top: 50px;
+    width: 100%;
+    background: green;
+}
+
+.main-content {
+    display: flex;
+}
+
+.main-content .box {
+    flex-basis: 100%;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+.main-content .fab {
+    color: #76ff7a;
+}
+
+.box h2 {
+    font-size: 2.0rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.main-content .footer-content {
+    font-size: 1.15rem;
+}
+
+.main-content .box .social {
+    margin: 20px 0 0 0;
+}
+
+.main-content .box .social a {
+    padding: 0 10px;
+}
+
+.main-content .box .social a span {
+    height: 30px;
+    width: 30px;
+    background: #1a1a1a;
+    text-align: center;
+    font-size: 18px;
+    line-height: 30px;
+    border-radius: 5px;
+    transition: all .3s ease-out;
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+}
+
+.main-content .box .social a span:hover {
+    transition: all .3s ease-in;
+    color: #00693e;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.extras {
+    background: black;
+    display: flex;
+    padding: 5px 5px;
+}
+
+.extras .ft-rights {
+    margin-top: 15px;
+    flex-basis: 100%;
+    color: white;
+    font-size: 0.69rem;
+    opacity: 50%;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.extras .terms {
+    margin-top: 15px;
+    flex-basis: 100%;
+    color: white;
+    font-size: 0.69rem;
+    opacity: 50%;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.main-content .fa-arrow-alt-circle-up {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color: black;
+    font-size: 50px;
+    transition: all .1s ease-out;
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+}
+
+.main-content .fa-arrow-alt-circle-up:hover {
+    transition: all .1s ease-in;
+    color: #616161;
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+}
+
+.form-verify {
+    margin-top: 250px;
+}
+
+.zoom-in {
+    overflow: hidden;
+    transition: all .4s ease-out;
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+}
+
+.zoom-in:hover {
+    transition: all .4s ease-in;
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+}
+
+.submit-btn {
+    display: inline;
+}
+
+.submit-btn-overwrite {
+    display: none;
+}
+
+.pswd-req {
+    font-weight: bold;
+}
+
+.pswd-reqmnts {
+    line-height: 1px;
+}
+
+.user-tab-active {
+    color: white;
+    background-color: #00a0d1;
+}
+
+.user-tab-standby {
+    color: black;
+}
+
+.user-tab-standby:hover {
+    color: grey;
+    text-decoration: underline;
+}
+
+.list-group-item-main {
+    background-color: #3b3b3b;
+    color: white;
+}
+
+.list-group-item-content {
+    background-color: #949494;
+    color: black;
+}
+
+.form-submit-login-err {
+    display: none;
+    color: red;
+}
+
+.pfp-image {
+    width: 15em;
+    height: 15em;
+}
+
+.rss-styling {
+    transition: all .3s ease-out;
+    color: #00693e;
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+}
+
+.rss-styling:hover {
+    transition: all .3s ease-in;
+    color: #00693e;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.icon-padding {
+    margin-right: 8px;
+}
+
+.index-bg-img {
+    background-color: black;
+    background-image: url(../img/backgrounds/index-bg.jpg);
+    backdrop-filter: blur(8px);
+}
+
+.vr-bg-img {
+    background-color: #000033;
+    background-image: url(../img/backgrounds/vr-bg.jpg);
+    backdrop-filter: blur(16px);
+}
+
+.biology-bg-img {
+    background-color: #330033;
+    background-image: url(../img/backgrounds/biology-bg.jpg);
+    backdrop-filter: blur(16px);
+}
+
+.gallery-bio-bg-img {
+    background-color: #28b550;
+    background-image: linear-gradient(315deg, #28b550 0%, #6fd69c 74%);
+}
+
+.gallery-vr-bg-img {
+    background-color: #0a2f6b;
+    background-image: linear-gradient(315deg, #0a2f6b 0%, #6f8cd6 74%);
+}
+
+.login-bg-img {
+    background-color: #005181;
+    background-image: url(../img/backgrounds/login-bg.jpg);
+    backdrop-filter: blur(8px);
+}
+
+.register-bg-img {
+    background-color: #1d2937;
+    background-image: url(../img/backgrounds/register-bg.jpg);
+    backdrop-filter: blur(8px);
+}
+
+.user-bg-img {
+    background-color: black;
+    background-image: url(../img/backgrounds/user-bg.jpg);
+    backdrop-filter: blur(8px);
+}

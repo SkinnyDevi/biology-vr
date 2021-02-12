@@ -130,7 +130,11 @@ function dniRealityCheck(check, dni) {
 function entryCheck(errorCatcher, formObject) {
     refSubmissions = firebase.database().ref().child("submissions");
 
+    var spinSubmit = document.getElementById("spinner-submit");
+    var spinOverwrite = document.getElementById("spinner-overwrite");
+
     if (!errorCatcher) {
+        spinSubmit.style.display = "inline-block";
         refSubmissions.orderByChild('dni').equalTo(formObject.dni.value).once("value", function(snap) {
             entryExists = false;
             var childToOverwrite = "";
@@ -148,12 +152,14 @@ function entryCheck(errorCatcher, formObject) {
             var activeOverwrite = document.getElementsByClassName("overwrite-active")[0];
             if (entryExists == true) {
                 if (activeOverwrite == null) {
+                    spinSubmit.style.display = "none";
                     console.log("Overwrite button pops up now.");
                     document.getElementById("form-submit").style.display = "none";
                     document.getElementsByClassName("submit-btn-overwrite")[0].style.display = "inline";
                     document.getElementsByClassName("submit-btn-overwrite")[0].classList.add("overwrite-active");
                     document.getElementById("err-overwrite").style.display = "block";
                 } else if (activeOverwrite != null) {
+                    spinOverwrite.style.display = "inline-block"
                     console.log("Data should be sent to override the previous one since the button override was clicked");
                     pushFormObjectData(formObject, true, childToOverwrite);
                 }
@@ -170,6 +176,8 @@ function entryCheck(errorCatcher, formObject) {
 function pushFormObjectData(formObject, overwriteState, childToUpdate) {
     var refDB = firebase.database().ref();
     var refSubmissions = firebase.database().ref().child("submissions");
+
+    var spinOverwrite = document.getElementById("spinner-overwrite");
 
     firebase.auth().onAuthStateChanged((user) => {
         refSubmissions.orderByChild('uid').equalTo(user.uid).once("value", function(snap) {
@@ -196,11 +204,9 @@ function pushFormObjectData(formObject, overwriteState, childToUpdate) {
                         promotions: formObject.promotions.checked,
                         approval: 2,
                         overriden: false
-                    });
-                    console.log("Informacion enviada");
-                    setTimeout(function() {
-                        window.location.href = "verifiedform.html";
-                    }, 800);
+                    }).then(() => {
+                        window.location.href = "inscripcion-verificada";
+                    })
 
                 } else if (overwriteState == true) {
                     refDB.child("submissions/" + childToUpdate).update({
@@ -215,14 +221,12 @@ function pushFormObjectData(formObject, overwriteState, childToUpdate) {
                         promotions: formObject.promotions.checked,
                         approval: 2,
                         overriden: true
-                    });
-                    console.log("Informacion sobreescrita mandada")
-                    setTimeout(function() {
-                        window.location.href = "verifiedform.html";
-                    }, 800);
-
+                    }).then(() => {
+                        window.location.href = "inscripcion-verificada";
+                    })
                 }
             } else {
+                spinOverwrite.style.display = "none";
                 document.getElementById("err-overwrite").style.display = "none";
                 document.getElementById("err-override-denied").style.display = "block";
                 document.getElementsByClassName("submit-btn-overwrite")[0].style.display = "none";

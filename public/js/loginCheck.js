@@ -27,7 +27,6 @@ function checkIsUserLoggedIn() {
             console.log("User email: " + user.email)
 
             if (user.email == "snvradmin-21@gmail.com" || user.email == "snvrAdmin-21@gmail.com") {
-                console.log("Hi I entered here");
                 adminSearcher.style.display = 'block';
             } else {
                 adminSearcher.style.display = 'none';

@@ -55,13 +55,17 @@ function init() {
         }
     });
 
-    var covidLbl, ace2Lbl, influenzaLbl, covidMdl, ace2Mdl, influenzaMdl; // Controlador de Modelos
+    var covidLbl, ace2Lbl, influenzaLbl, hepatitisBLbl; // Controlador de Modelos
+    var covidMdl, ace2Mdl, influenzaMdl, hepatitisBMdl;
     covidLbl = document.getElementById('covid-label');
     ace2Lbl = document.getElementById('ace2-label');
     influenzaLbl = document.getElementById('influenza-label');
+    hepatitisBLbl = document.getElementById('hepatitis-b-label');
+
     covidMdl = document.getElementById('covid-3d');
     ace2Mdl = document.getElementById('ace2-3d');
     influenzaMdl = document.getElementById('influenza-3d');
+    hepatitisBMdl = document.getElementById('hepatitis-b-3d');
 
     var clicker = document.getElementById('au-models');
 
@@ -69,40 +73,86 @@ function init() {
         covidMdl.setAttribute('visible', 'true');
         ace2Mdl.setAttribute('visible', 'false');
         influenzaMdl.setAttribute('visible', 'false');
+        hepatitisBMdl.setAttribute('visible', 'false');
         clicker.components.sound.playSound(); // clicker
     });
     ace2Lbl.addEventListener('mouseenter', function() {
         covidMdl.setAttribute('visible', 'false');
         ace2Mdl.setAttribute('visible', 'true');
         influenzaMdl.setAttribute('visible', 'false');
+        hepatitisBMdl.setAttribute('visible', 'false');
         clicker.components.sound.playSound(); // clicker
     });
     influenzaLbl.addEventListener('mouseenter', function() {
         covidMdl.setAttribute('visible', 'false');
         ace2Mdl.setAttribute('visible', 'false');
         influenzaMdl.setAttribute('visible', 'true');
+        hepatitisBMdl.setAttribute('visible', 'false');
+        clicker.components.sound.playSound(); // clicker
+    });
+    hepatitisBLbl.addEventListener('mouseenter', function() {
+        covidMdl.setAttribute('visible', 'false');
+        ace2Mdl.setAttribute('visible', 'false');
+        influenzaMdl.setAttribute('visible', 'false');
+        hepatitisBMdl.setAttribute('visible', 'true');
         clicker.components.sound.playSound(); // clicker
     });
 
-    var covidFrame, hiwFrame, ace2Frame; // GIF Frame Controller
+    var covidFrame, influenzaFrame, ace2Frame, hepatitisFrame; // GIF Frame Controller
+    var covidInfo, influenzaInfo, ace2Info, hepatitisInfo; // Information Controller
     covidFrame = document.getElementById('covid-gif-frame');
-    hiwFrame = document.getElementById('influenza-gif-frame');
+    influenzaFrame = document.getElementById('influenza-gif-frame');
     ace2Frame = document.getElementById('ace2-gif-frame');
+    hepatitisFrame = document.getElementById('hepatitis-gif-frame');
+
+    covidInfo = document.getElementById("covid-info");
+    influenzaInfo = document.getElementById("influenza-info");
+    ace2Info = document.getElementById("ace2-info");
+    hepatitisInfo = document.getElementById("hepatitis-info");
 
     covidLbl.addEventListener('mouseenter', function() {
         covidFrame.setAttribute('visible', 'true');
         ace2Frame.setAttribute('visible', 'false');
-        hiwFrame.setAttribute('visible', 'false');
+        influenzaFrame.setAttribute('visible', 'false');
+        hepatitisFrame.setAttribute('visible', 'false');
+
+        covidInfo.setAttribute('visible', 'true');
+        influenzaInfo.setAttribute('visible', 'false');
+        ace2Info.setAttribute('visible', 'false');
+        hepatitisInfo.setAttribute('visible', 'false');
     });
     ace2Lbl.addEventListener('mouseenter', function() {
         covidFrame.setAttribute('visible', 'false');
         ace2Frame.setAttribute('visible', 'true');
-        hiwFrame.setAttribute('visible', 'false');
+        influenzaFrame.setAttribute('visible', 'false');
+        hepatitisFrame.setAttribute('visible', 'false');
+
+        covidInfo.setAttribute('visible', 'false');
+        ace2Info.setAttribute('visible', 'true');
+        influenzaInfo.setAttribute('visible', 'false');
+        hepatitisInfo.setAttribute('visible', 'false');
     });
     influenzaLbl.addEventListener('mouseenter', function() {
         covidFrame.setAttribute('visible', 'false');
         ace2Frame.setAttribute('visible', 'false');
-        hiwFrame.setAttribute('visible', 'true');
+        influenzaFrame.setAttribute('visible', 'true');
+        hepatitisFrame.setAttribute('visible', 'false');
+
+        covidInfo.setAttribute('visible', 'false');
+        ace2Info.setAttribute('visible', 'false');
+        influenzaInfo.setAttribute('visible', 'true');
+        hepatitisInfo.setAttribute('visible', 'false');
+    });
+    hepatitisBLbl.addEventListener('mouseenter', function() {
+        covidFrame.setAttribute('visible', 'false');
+        ace2Frame.setAttribute('visible', 'false');
+        influenzaFrame.setAttribute('visible', 'false');
+        hepatitisFrame.setAttribute('visible', 'true');
+
+        covidInfo.setAttribute('visible', 'false');
+        influenzaInfo.setAttribute('visible', 'false');
+        ace2Info.setAttribute('visible', 'false');
+        hepatitisInfo.setAttribute('visible', 'true');
     });
 
     var exit = document.getElementById('exit');
@@ -110,7 +160,7 @@ function init() {
         clicker.components.sound.playSound(); // clicker
         var exitter = confirm('¿Quieres salir del entorno?');
         if (exitter == true) {
-            window.location.href = "/index.html";
+            window.location.href = "/";
         }
     });
 };

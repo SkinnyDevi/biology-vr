@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
@@ -34,13 +34,17 @@
         firebase.initializeApp(firebaseConfig);
     </script>
 
+    <link rel="stylesheet" href="css/main-styles.css">
+    <link rel="stylesheet" href="css/ids.css">
+    <link rel="stylesheet" href="css/bg-colours.css">
+    <link rel="stylesheet" href="css/err-ids.css">
+    <link rel="icon" href="img/tab-icon.png">
     <script src="js/loginCheck.js"></script>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="bg-british-racing">
-    <nav class="navbar navbar-expand-lg bg-success navbar-dark fixed-top">
-        <a class="navbar-brand" href="index.html">
+<body class="gallery-bio-bg-img">
+    <nav class="navbar navbar-expand-lg bg-my-green navbar-light sticky-top">
+        <a class="navbar-brand" href="/">
             <img src="img/home.png" alt="logo" style="width:40px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -49,41 +53,55 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="vrMaterial.html">Realidad Virtual</a>
+                    <a class="nav-link" href="realidad-virtual">
+                        <i class="fas fa-vr-cardboard icon-padding"></i>Realidad Virtual
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="biology.html">Biología de los Virus</a>
+                    <a class="nav-link" href="biologia">
+                        <i class="fas fa-microscope icon-padding"></i>Biología de los Virus
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Galería</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        <i class="fas fa-images icon-padding"></i>Galería
+                    </a>
                     <div class="dropdown-menu bg-tea-green">
-                        <a class="dropdown-item" href="vrGallery.html">Kit Realidad Virtual</a>
-                        <a class="dropdown-item" href="bioGallery.html">Células en Realidad Virtual</a>
+                        <a class="dropdown-item" href="galeria-virtual">Kit Realidad Virtual</a>
+                        <a class="dropdown-item" href="galeria-biologica">Células en Realidad Virtual</a>
                     </div>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="submissionSeacher.html" id="admin-submit-searcher">Buscador De Inscripciones</a>
+                    <a class="nav-link" href="inscripciones" id="admin-submit-searcher">Buscador De Inscripciones</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="userlogin.html" id="login-btn">Iniciar sesión</a>
+                    <a class="nav-link" href="login" id="login-btn">
+                        <i class="fas fa-sign-in-alt icon-padding"></i>Iniciar sesión
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="userregister.html" id="register-btn">Registrarse</a>
+                    <a class="nav-link" href="register" id="register-btn">
+                        <i class="fas fa-user-plus icon-padding"></i>Registrarse
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="userweb.html" id="my-profile-btn">Mi Perfil</a>
+                    <a class="nav-link" href="profile" id="my-profile-btn">
+                        <i class="fas fa-inbox icon-padding"></i>Mi Perfil
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html" id="logout-btn">Cerrar sesión</a>
+                    <a class="nav-link" href="/" id="logout-btn">
+                        <i class="fas fa-sign-out-alt icon-padding"></i>Cerrar sesión
+                    </a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container">
         <div class="row">
-            <div class="jumbotron p-4 text-center mx-auto d-block bg-screaming-green" style="margin-top: 100px">
+            <div class="jumbotron p-4 text-center mx-auto d-block bg-screaming-green" style="margin-top: 50px">
                 <h2>Imágenes del los modelos 3D de las células y virus del proyecto</h2>
             </div>
         </div>

@@ -7,7 +7,7 @@ function init() {
     loginBox.addEventListener("submit", loginUser);
 
     var currentLoc = window.location.href;
-    if (currentLoc.includes("userloginverify.html")) {
+    if (currentLoc.includes("userloginverify")) {
         firebase.auth().signOut().then(() => {
             console.log("User has been logged out.")
         }).catch((error) => {
@@ -28,22 +28,23 @@ function loginUser(event) {
     var errUser = document.getElementById("err-email-log");
     var errPass = document.getElementById("err-password-log");
 
-    fbAuth.signInWithEmailAndPassword(email, password).then((user) => {
-        var wrongPass = "auth/wrong-password";
-        var noUser = "auth/user-not-found";
+    var spinnerLogin = document.getElementById("spinner-login");
+    spinnerLogin.style.display = "inline-block";
 
+    fbAuth.signInWithEmailAndPassword(email, password).then((user) => {
         errUser.style.display = 'none';
         errPass.style.display = 'none';
 
         console.log(email + " has logged in");
 
         var currentLoc = window.location.href;
-        if (currentLoc.includes("userloginverify.html")) {
-            window.location.href = "userweb.html";
+        if (currentLoc.includes("userloginverify")) {
+            window.location.href = "profile";
         } else {
-            window.location.href = "index.html";
+            window.location.href = "/";
         }
     }).catch((error) => {
+        spinnerLogin.style.display = "none";
         var wrongPass = "auth/wrong-password";
         var noUser = "auth/user-not-found";
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscripción Enviada</title>
+    <title>Buscador de Inscripciones</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -14,7 +14,6 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -39,11 +38,11 @@
     <link rel="stylesheet" href="css/bg-colours.css">
     <link rel="stylesheet" href="css/err-ids.css">
     <link rel="icon" href="img/tab-icon.png">
-    <script src="js/loginCheck.js"></script>
+    <script src="js/submissionFilter.js"></script>
 </head>
 
-<body class="index-bg-img">
-    <nav class="navbar navbar-expand-sm bg-my-green navbar-light sticky-top">
+<body class="bg-midnight-green">
+    <nav class="navbar navbar-expand-sm bg-my-green navbar-light fixed-top">
         <a class="navbar-brand" href="/">
             <img src="img/home.png" alt="logo" style="width:40px;">
         </a>
@@ -74,19 +73,6 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="inscripciones" id="admin-submit-searcher">Buscador De Inscripciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login" id="login-btn">
-                        <i class="fas fa-sign-in-alt icon-padding"></i>Iniciar sesión
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="register" id="register-btn">
-                        <i class="fas fa-user-plus icon-padding"></i>Registrarse
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="profile" id="my-profile-btn">
                         <i class="fas fa-inbox icon-padding"></i>Mi Perfil
                     </a>
@@ -103,13 +89,86 @@
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-                <div class="jumbotron p-4 text-center bg-success" style="margin-top: 255px; margin-bottom: 205px;">
-                    <h1>Solicitud mandada exitósamente.</h1>
-                    <p class="text-dark">Utiliza este boton o el icono de la barra de navegación para volver a la página principal.</p>
-                    <a href="/" class="btn btn-primary" role="button">Volver a la página principal</a>
+                <div class="jumbotron p-3 bg-success" style="margin-top: 200px; margin-bottom: 100px;">
+                    <h2>Filtro de incripciones recibidas.</h2>
+                    <form id="submission-searcher">
+                        <div class="form-group">
+                            <label for="dni-filter">DNI:</label>
+                            <input type="text" class="form-control" id="dni-filter" placeholder="Escribe un DNI para buscar su inscripcion" name="dni">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="filter-submit" class="btn btn-warning">Filtrar</button>
+                        </div>
+                    </form>
+                    <div class="jumbotron p-3 bg-primary text-center" id="filtered-submission" style="margin-top: 15px;">
+                        <h2 id="filtered-response">Esperando búsqueda...</h2>
+                        <div class="table-responsive-lg">
+                            <table id="filter-table" class="table table-hover table-bordered bg-dartmouth-green">
+                                <thead>
+                                    <tr>
+                                        <th>Campos de Inscripción</th>
+                                        <th>Información proporcionada</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nombre:</td>
+                                        <td id="filter-name"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apellidos:</td>
+                                        <td id="filter-surname"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sexo:</td>
+                                        <td id="filter-sex"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>DNI:</td>
+                                        <td id="filter-dni"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Correo Electrónico:</td>
+                                        <td id="filter-email"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Horas Escogidas:</td>
+                                        <td id="filter-hours"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Términos Aceptados:</td>
+                                        <td id="filter-terms"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Estado de inscripción:</td>
+                                        <td id="filter-approval"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <button id="registry-delete-btn" type="button" class="btn btn-danger">Borrar Registro</button>
+                    <div id="no-filter-deletion" class="text-warning">*Error: No se ha proporcionado ningun filtro.</div>
+                    <div id="delete-cage" class="jumbotron p-3 bg-warning" style="margin-top: 20px">
+                        <form id="delete-registry-form">
+                            <div class="form-group">
+                                <label for="dni-registry-delete">Confirma el DNI para borrar tu registro:</label>
+                                <input type="text" class="form-control" id="dni-registry-delete" placeholder="Escribe DNI del registro" name="dni">
+                                <div id="dni-registry-delete-err" class="text-warning bg-danger">*DNI no válido.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email-registry-delete">Confirma el correo electrónico para borrar tu registro:</label>
+                                <input type="text" class="form-control" id="email-registry-delete" placeholder="Escribe email del registro" name="email">
+                                <div id="email-registry-delete-err" class="text-warning bg-danger">*Escribe el email del registro para borrarlo.</div>
+                            </div>
+                            <button id="registry-delete-confirm" type="submit" class="btn btn-danger">Confirmar Y Borrar registro</button>
+                            <br />
+                            <div id="match-err" class="text-warning bg-danger">*ERROR: Los datos no coinciden. Consulte sus datos con el filtro proporcionado.</div>
+                        </form>
+                    </div>
                 </div>
+                <div class="col-sm-2"></div>
             </div>
-            <div class="col-sm-2"></div>
         </div>
     </div>
     <footer>

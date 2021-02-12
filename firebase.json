@@ -1,10 +1,60 @@
 {
-  "hosting": {
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+    "hosting": {
+        "public": "public",
+        "ignore": [
+            "firebase.json", "**/.*", "**/node_modules/**"
+        ],
+        "rewrites": [{
+                "source": "/galeria-biologica",
+                "destination": "/bioGallery.html"
+            },
+            {
+                "source": "/galeria-virtual",
+                "destination": "/vrGallery.html"
+            },
+            {
+                "source": "/biologia",
+                "destination": "/biology.html"
+            },
+            {
+                "source": "/entorno-virtual",
+                "destination": "/cellEnv.html"
+            },
+            {
+                "source": "/sanidad-vr-rss",
+                "destination": "/feed.xml"
+            },
+            {
+                "source": "/inscripciones",
+                "destination": "/submissionSearcher.html"
+            },
+            {
+                "source": "/login",
+                "destination": "/userlogin.html"
+            },
+            {
+                "source": "/register",
+                "destination": "/userregister.html"
+            },
+            {
+                "source": "/login-verify",
+                "destination": "/userloginverify.html"
+            },
+            {
+                "source": "/profile",
+                "destination": "/userweb.html"
+            },
+            {
+                "source": "/inscripcion-verificada",
+                "destination": "/verifiedform.html"
+            },
+            {
+                "source": "/realidad-virtual",
+                "destination": "/vrMaterial.html"
+            }, {
+                "source": "**",
+                "destination": "/"
+            }
+        ]
+    }
 }

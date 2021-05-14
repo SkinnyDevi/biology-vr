@@ -1,0 +1,123 @@
+#err-name {
+    display: none;
+    color: red;
+}
+
+#err-surname {
+    display: none;
+    color: red;
+}
+
+#err-email {
+    display: none;
+    color: red;
+}
+
+#err-dni {
+    display: none;
+    color: red;
+}
+
+#err-hours {
+    display: none;
+    color: red;
+}
+
+#err-sex {
+    display: none;
+    color: red;
+}
+
+#err-terms {
+    display: none;
+    color: red;
+}
+
+#err-overwrite {
+    display: none;
+    color: red;
+}
+
+#err-override-denied {
+    display: none;
+}
+
+#err-email-log {
+    display: none;
+}
+
+#err-password-log {
+    display: none;
+}
+
+#err-name-reg {
+    display: none;
+}
+
+#err-surname-reg {
+    display: none;
+}
+
+#err-email-reg {
+    display: none;
+}
+
+#err-password-reg {
+    display: none;
+}
+
+#err-password-2-reg {
+    display: none;
+}
+
+#dni-registry-delete-err {
+    display: none;
+}
+
+#email-registry-delete-err {
+    display: none;
+}
+
+#password-registry-delete-err {
+    display: none;
+}
+
+#match-err {
+    display: none;
+}
+
+#existing-acc-err {
+    display: none;
+}
+
+#change-pass-empty-err {
+    display: none;
+    color: red;
+}
+
+#change-pass-confirm-err {
+    display: none;
+    color: red;
+}
+
+#same-pass-err {
+    display: none;
+    color: red;
+}
+
+#invalid-pass-err {
+    display: none;
+}
+
+#mismatch-err {
+    display: none;
+    margin-top: 15px;
+}
+
+#image-file-err {
+    display: none;
+}
+
+#ext-file-err {
+    display: none;
+}

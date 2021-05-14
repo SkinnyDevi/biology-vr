@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAACwJ6lSxwSQPROVWsoHPu0W9rtEgu5BQ",
+            authDomain: "sanidad-vr.firebaseapp.com",
+            databaseURL: "https://sanidad-vr.firebaseio.com",
+            projectId: "sanidad-vr",
+            storageBucket: "sanidad-vr.appspot.com",
+            messagingSenderId: "521452265133",
+            appId: "1:521452265133:web:aabd4d257e8c1f16b37024"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <link rel="stylesheet" href="css/main-styles.css">
+    <link rel="stylesheet" href="css/ids.css">
+    <link rel="stylesheet" href="css/bg-colours.css">
+    <link rel="stylesheet" href="css/err-ids.css">
+    <link rel="icon" href="img/tab-icon.png">
+    <script src="js/registersite.js"></script>
+</head>
+
+<body class="register-bg-img">
+    <nav class="navbar navbar-expand-lg bg-my-green navbar-light fixed-top">
+        <a class="navbar-brand" href="/">
+            <img src="img/home.png" alt="logo" style="width:40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+						<span class="navbar-toggler-icon"></span>
+				</button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="realidad-virtual">
+                        <i class="fas fa-vr-cardboard icon-padding"></i>Realidad Virtual
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="biologia">
+                        <i class="fas fa-microscope icon-padding"></i>Biología de los Virus
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        <i class="fas fa-images icon-padding"></i>Galería
+                    </a>
+                    <div class="dropdown-menu bg-tea-green">
+                        <a class="dropdown-item" href="galeria-virtual">Kit Realidad Virtual</a>
+                        <a class="dropdown-item" href="galeria-biologica">Células en Realidad Virtual</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="jumbotron p-4 bg-airforce-blue" style="margin-top: 150px; margin-bottom: 105px;">
+                    <h1>Registrarse</h1>
+                    <form id="form-register">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name" placeholder="Nombre" name="name">
+                            <div id="err-name-reg" class="text-warning">*Escribe aquí tu nombre.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="surname">Apellidos</label>
+                            <input type="text" class="form-control" id="surname" placeholder="Apellidos" name="surname">
+                            <div id="err-surname-reg" class="text-warning">*Escribe aquí tus apellidos.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="text" class="form-control" id="email" placeholder="Escribe tu correo electrónico" name="email">
+                            <div id="err-email-reg" class="text-warning">*Correo electrónico no válido.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password">
+                            <div id="err-password-reg" class="text-warning">*Contraseña no cumple los requisitos.</div>
+                            <div>
+                                <p class="pswd-req">Requisitos de contraseña:</p>
+                                <p class="pswd-reqmnts"> - Al menos una mayúscula</p>
+                                <p class="pswd-reqmnts"> - Al menos una minúscula</p>
+                                <p class="pswd-reqmnts"> - Al menos un numero</p>
+                                <p class="pswd-reqmnts"> - Debe tener como minimo 6 caracteres</p>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="password-2">Repite tu contraseña</label>
+                            <input type="password" class="form-control" id="password-2" placeholder="Confirmar contraseña" name="password2">
+                            <div id="err-password-2-reg" class="text-warning">*Las contraseñas no coinciden.</div>
+                        </div>
+                        <p>Arrastra aqui una imagen tuya. <br/>- El archivo debe ser menor a 5MB.</p>
+                        <div class="form-group custom-file">
+                            <label class="custom-file-label" id="file-label" for="pfp-image-file">Escoge una imagen</label>
+                            <input type="file" class="custom-file-input" id="pfp-image-file" name="imageFile">
+                            <div id="image-file-err" class="text-warning">*Sube una foto tuya aqui</div>
+                            <div id="ext-file-err" class="text-warning">*El archivo debe ser una imagen</div>
+                        </div>
+                        <br />
+                        <div id="existing-acc-err" class="text-warning bg-danger">*ERROR: Ya hay una cuenta asociada a este correo electrónico.</div>
+                        <br />
+                        <div class="text-center">
+                            <button id="form-submit" type="submit" class="btn btn-warning">Entrar 
+                                <span id="spinner-register" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+    <footer>
+        <!-- Uso de FlexBox en CSS-->
+        <div class="main-content">
+            <div class="box">
+                <a href="#"><span class="far fa-arrow-alt-circle-up"></span></a>
+                <h2>¿Quiéres saber más sobre nosotros?</h2>
+                <p class="footer-content">¡Estas invitado a conocer todos nuestros eventos y nuevas oportunidades que te encontrarás! <br /> Síguenos en nuestras redes sociales para enterarte de nuevos eventos al instante.</p>
+                <div class="social">
+                    <a href="#"><span class="fab fa-facebook-f"></span></a>
+                    <a href="#"><span class="fab fa-twitter"></span></a>
+                    <a href="#"><span class="fab fa-instagram"></span></a>
+                    <a href="#"><span class="fab fa-youtube"></span></a>
+                </div>
+                <p>--------------------------------</p>
+                <p>~~Aprende A Descrubrir~~</p>
+            </div>
+        </div>
+        <div class="extras">
+            <p class="ft-rights">© 2020 IES El Rincón. Creative Commons.</p>
+            <p class="terms">Términos y Privacidad.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
